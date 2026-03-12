@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import type { Book } from '../providers/BookProvider'
+import type { Weather } from '../providers/WeatherProvider'
 
 interface Props {
-    books: Book[];
+    weathers: Weather[];
 }
 
-export const BookListComponent = (props: Props) => {
-    const {books} = props
+export const WeatherListComponent = (props: Props) => {
+    const {weathers} = props
 
-    const headers = ['Id', 'Title', 'Author', 'Genre', 'Pages', 'Published Year']
-    const keys: (keyof Book)[] = ['id', 'title', 'author', 'genre', 'pages', 'publishedYear']
+    const headers = ['Id', 'City name', 'Region', 'Latitude', 'Longitude', 'Temperature', 'Timestamp']
+    const keys: (keyof Weather)[] = ['id', 'cityName', 'region', 'latitude', 'longitude', 'temperature', 'timestamp']
 
     return (
         <Root className='float-container'>
@@ -19,10 +19,10 @@ export const BookListComponent = (props: Props) => {
                     <th key={header}>{header}</th>
                 ))}
             </tr>
-            {books.map(book => (
-                <tr key={book.id}>
+            {weathers.map(w => (
+                <tr key={w.id}>
                     {keys.map(key => (
-                        <td>{book[key]}</td>
+                        <td>{w[key]}</td>
                     ))}
                 </tr>
             ))}

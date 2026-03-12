@@ -1,20 +1,19 @@
 import React from 'react'
-import { BookProvider } from './providers/BookProvider'
+import { WeatherProvider } from './providers/WeatherProvider'
 import { PageContainer } from './components/PageContainer'
 import { BodyContainer } from './components/BodyContainer'
-import { BookGalleryComponent } from './components/BookGalleryComponent'
+import { WeatherGalleryComponent } from './components/WeatherGallery'
 
 function App() {
 
   return (
-    <BookProvider>
+    <WeatherProvider>
       <PageContainer>
         <BodyContainer>
-          <BookGalleryComponent />
-          
+          <WeatherGalleryComponent />
         </BodyContainer>
       </PageContainer>
-    </BookProvider>
+    </WeatherProvider>
   )
 }
 
