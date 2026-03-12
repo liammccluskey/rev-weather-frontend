@@ -86,6 +86,7 @@ const stringifyQuery = (queryParams: Object): string => {
             console.log(res.data)
         } catch (error) {
             console.log(error)
+            throw error
         }
     }
 

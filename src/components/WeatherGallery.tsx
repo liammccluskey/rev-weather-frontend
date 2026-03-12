@@ -20,6 +20,7 @@ export const WeatherGalleryComponent = () => {
     const [cityName, setCityName] = useState<string>('')
     const [region, setRegion] = useState<string>('')
     const [formData, setFormData] = useState<WeatherRequest>(InitialFormData)
+    const [errorMessage, setErrorMessage] = useState<string>('')
 
     // Utils
 
@@ -48,6 +49,7 @@ export const WeatherGalleryComponent = () => {
             ...curr,
             [name]: value
         }))
+        setErrorMessage('')
     }
 
     const onClickAddWeather = async (event: any): Promise<void> => {
@@ -56,8 +58,9 @@ export const WeatherGalleryComponent = () => {
             await postWeather(formData)
             await fetchWeathersWithFilters()
             setFormData(InitialFormData)
-        } catch (error) {
-            console.log(error)
+        } catch (error: any) {
+            const errorMessages: string[] = Object.values(error.response?.data?.messages)
+            setErrorMessage(errorMessages.join('. '))
         }
     }
 
@@ -80,6 +83,7 @@ export const WeatherGalleryComponent = () => {
                 <br />
                 <WeatherSubmissionComponent
                     formData={formData}
+                    errorMessage={errorMessage}
                     onChangeFormData={onChangeFormData}
                     onClickAddWeather={onClickAddWeather}
                 />
@@ -100,7 +104,7 @@ export const WeatherGalleryComponent = () => {
 const Root = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: flex-start;
     justify-content: flex-start;
 
     & .right-container {
